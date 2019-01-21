@@ -9,7 +9,7 @@ var request = require('request');
 module.exports = function(homebridge){
     Service = homebridge.hap.Service;
     Characteristic = homebridge.hap.Characteristic;
-    homebridge.registerAccessory('homebridge-neopixel', 'HTTP-NEO', HTTP_NEO);
+    homebridge.registerAccessory('homebridge-pistrips', 'PI-STRIPS', PI_STRIPS);
 };
 
 /**
@@ -20,7 +20,7 @@ module.exports = function(homebridge){
  * @param {function} log Logging function
  * @param {object} config Your configuration object
  */
-function HTTP_NEO(log, config) {
+function PI_STRIPS(log, config) {
 
     // The logging function is required if you want your function to output
     // any information to the console in a controlled and organized manner.
@@ -89,9 +89,9 @@ function HTTP_NEO(log, config) {
 
 /**
  *
- * @augments HTTP_NEO
+ * @augments PI_STRIPS
  */
-HTTP_NEO.prototype = {
+PI_STRIPS.prototype = {
 
     /** Required Functions **/
     identify: function(callback) {
@@ -106,7 +106,7 @@ HTTP_NEO.prototype = {
 
         informationService
             .setCharacteristic(Characteristic.Manufacturer, "www.StudioPieters.nl")
-            .setCharacteristic(Characteristic.Model, "homebridge-neopixel")
+            .setCharacteristic(Characteristic.Model, "homebridge-pistrips")
             .setCharacteristic(Characteristic.SerialNumber, "SP02022017");
 
         switch (this.service) {
