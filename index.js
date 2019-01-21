@@ -26,7 +26,7 @@ function PI_STRIPS(log, config) {
     // any information to the console in a controlled and organized manner.
     this.log = log;
 
-    this.service                       = 'Switch';
+    this.service                       = 'Light';
     this.name                          = config.name;
 
     this.http_method                   = config.http_method               || 'GET';
@@ -105,7 +105,6 @@ PI_STRIPS.prototype = {
         var informationService = new Service.AccessoryInformation();
 
         informationService
-            .setCharacteristic(Characteristic.Manufacturer, "www.StudioPieters.nl")
             .setCharacteristic(Characteristic.Model, "homebridge-pistrips")
             .setCharacteristic(Characteristic.SerialNumber, "SP02022017");
 
