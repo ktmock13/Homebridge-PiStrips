@@ -275,15 +275,15 @@ PI_STRIPS.prototype = {
             body = this.switch.powerOff.body;
         }
 
-        this._httpRequest(url, body, this.http_method, function(error, response, responseBody) {
-            if (error) {
-                this.log('setPowerState() failed: %s', error.message);
-                callback(error);
-            } else {
-                this.log('setPowerState() successfully set to %s', state ? 'ON' : 'OFF');
-                callback(undefined, responseBody);
-            }
-        }.bind(this));
+        // this._httpRequest(url, body, this.http_method, function(error, response, responseBody) {
+        //     if (error) {
+        //         this.log('setPowerState() failed: %s', error.message);
+        //         callback(error);
+        //     } else {
+        //         this.log('setPowerState() successfully set to %s', state ? 'ON' : 'OFF');
+        //         callback(undefined, responseBody);
+        //     }
+        // }.bind(this));
     },
 
     /**
@@ -327,22 +327,22 @@ PI_STRIPS.prototype = {
         }
         this.cache.brightness = level;
 
-        // If achromatic, then update brightness, otherwise, update HSL as RGB
-        if (!this.color) {
-            var url = this.brightness.set_url.replace('%s', level);
+        // // If achromatic, then update brightness, otherwise, update HSL as RGB
+        // if (!this.color) {
+        //     var url = this.brightness.set_url.replace('%s', level);
 
-            this._httpRequest(url, '', this.brightness.http_method, function(error, response, body) {
-                if (error) {
-                    this.log('setBrightness() failed: %s', error);
-                    callback(error);
-                } else {
-                    this.log('setBrightness() successfully set to %s %', level);
-                    callback();
-                }
-            }.bind(this));
-        } else {
-            this._setRGB(callback);
-        }
+        //     this._httpRequest(url, '', this.brightness.http_method, function(error, response, body) {
+        //         if (error) {
+        //             this.log('setBrightness() failed: %s', error);
+        //             callback(error);
+        //         } else {
+        //             this.log('setBrightness() successfully set to %s %', level);
+        //             callback();
+        //         }
+        //     }.bind(this));
+        // } else {
+        //     this._setRGB(callback);
+        // }
     },
 
     /**
@@ -393,7 +393,7 @@ PI_STRIPS.prototype = {
         this.log('Caching Hue as %s ...', level);
         this.cache.hue = level;
 
-        this._setRGB(callback);
+        // this._setRGB(callback);
     },
 
     /**
@@ -445,7 +445,7 @@ PI_STRIPS.prototype = {
         this.log('Caching Saturation as %s ...', level);
         this.cache.saturation = level;
 
-        this._setRGB(callback);
+        // this._setRGB(callback);
     },
 
     /**
@@ -454,7 +454,7 @@ PI_STRIPS.prototype = {
      * @param {function} callback The callback that handles the response.
      */
     _setRGB: function(callback) {
-        var rgb = this._hsvToRgb(this.cache.hue, this.cache.saturation, this.cache.brightness);
+        // var rgb = this._hsvToRgb(this.cache.hue, this.cache.saturation, this.cache.brightness);
         var r = this._decToHex(rgb.r);
         var g = this._decToHex(rgb.g);
         var b = this._decToHex(rgb.b);
